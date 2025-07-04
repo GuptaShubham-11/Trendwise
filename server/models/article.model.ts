@@ -6,6 +6,8 @@ export interface IArticle {
     content: string;
     metaDescription: string;
     headings: string[];
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 const articleSchema = new Schema(
@@ -14,7 +16,7 @@ const articleSchema = new Schema(
         slug: { type: String, required: true, unique: true },
         content: { type: String, required: true },
         metaDescription: { type: String, required: true },
-        headings: [String],
+        headings: [String]
     },
     { timestamps: true }
 );

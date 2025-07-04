@@ -3,6 +3,7 @@ dotenv.config({ path: './.env.local' });
 
 import connectDB from './db/db';
 import { app } from './app';
+import './cron/jobs';
 
 connectDB()
     .then(() => {

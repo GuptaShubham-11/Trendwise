@@ -1,6 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
 import { ApiError } from "./ApiError";
+import prompt from "./prompt";
 
 dotenv.config();
 
@@ -24,21 +25,16 @@ export const generateArticleFromTopic = async (
     topic: string
 ): Promise<ArticleContent | null> => {
     try {
-        const prompt = `
-Write a detailed, SEO-optimized blog article about "${topic}".
-Include:
-- A compelling title (H1)
-- Meta description (max 160 characters)
-- Proper headings (H2, H3)
-- Embedded links to relevant resources
-- Informative, engaging tone
-- Use Markdown formatting
-- Start title with '# '
-- Include a line like 'Meta description: ...'
-    `;
+        const promptText = prompt(topic);
+
+        if (!promptText) {
+            console.error("Prompt text not found");
+            throw new ApiError(500, "Prompt text not found");
+        }
+
         const result = await genAI.models.generateContent({
             model: 'gemini-1.5-flash',
-            contents: prompt
+            contents: promptText
         });
 
         const rawText = result.text;

@@ -18,6 +18,18 @@ app.use(
 app.use(express.json({ limit: '16kb' }));
 app.use(express.urlencoded({ extended: true, limit: '16kb' }));
 
+// Routes
+import userRouter from './routes/user.route';
+import articleRouter from './routes/article.route';
+import commentRouter from './routes/comment.route';
+import sitemapRoutes from './routes/sitemap.route';
+import robotsRoutes from './routes/robots';
+
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/articles', articleRouter);
+app.use('/api/v1/comments', commentRouter);
+app.use(sitemapRoutes);
+app.use(robotsRoutes);
 
 // Global error handler
 app.use(
