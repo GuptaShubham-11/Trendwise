@@ -135,7 +135,7 @@ export default function CommentsSection({ articleId, user }: CommentsSectionProp
                     </div>
                 ) : (
                     comments.map((comment) => (
-                        <CommentItem key={comment._id} comment={comment} />
+                        <CommentItem key={comment._id} user={user} comment={comment} />
                     ))
                 )}
             </div>
