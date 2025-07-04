@@ -27,6 +27,7 @@ export default function ArticlePage() {
                 setArticle(res.data.data);
                 toast.success("Article loaded successfully");
             } catch (error) {
+                console.error(error)
                 toast.error("Failed to load article");
             } finally {
                 setLoading(false);

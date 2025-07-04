@@ -32,6 +32,7 @@ export default function Header() {
             localStorage.removeItem("user");
             toast.success("Signed out successfully");
         } catch (error) {
+            console.error(error);
             toast.error("Failed to sign out");
         } finally {
             setIsLoading(false);

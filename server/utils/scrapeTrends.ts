@@ -21,8 +21,6 @@ export const scrapeGoogleTrends = async (): Promise<string[]> => {
 
         const topics = await page.evaluate(() => {
             const elements = Array.from(document.querySelectorAll(".mZ3RIc"));
-            console.log(elements);
-
             return elements.map(el => el.textContent?.trim() || "").filter(Boolean);
         });
 

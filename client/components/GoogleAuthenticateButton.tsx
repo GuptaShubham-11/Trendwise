@@ -1,7 +1,6 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { toast } from "sonner";
 import { Button } from "./ui/button";
 
 export default function GoogleAuthenticateButton() {

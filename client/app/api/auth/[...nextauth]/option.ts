@@ -22,7 +22,7 @@ export const authOptions: NextAuthOptions = {
             session.user.id = token.sub;
             return session;
         },
-        async jwt({ token, user, account }) {
+        async jwt({ token }) {
             return token;
         },
     },

@@ -69,14 +69,12 @@ export default function CommentsSection({ articleId, user }: CommentsSectionProp
             setNewComment("");
             listRef.current?.scrollTo({ top: 0, behavior: "smooth" });
         } catch (err) {
+            console.log(err);
             toast.error("Failed to post comment");
         } finally {
             setPosting(false);
         }
     };
-
-    console.log(comments);
-
 
     return (
         <div className="max-w-3xl mx-auto mt-10">
