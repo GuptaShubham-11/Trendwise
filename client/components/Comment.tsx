@@ -27,6 +27,12 @@ type CommentsSectionProps = {
     };
 };
 
+type UserType = {
+    name: string;
+    avatarUrl?: string;
+    _id?: string;
+};
+
 export default function CommentsSection({ articleId, user }: CommentsSectionProps) {
     const [comments, setComments] = useState<Comment[]>([]);
     const [loadingComments, setLoadingComments] = useState(false);
@@ -35,21 +41,20 @@ export default function CommentsSection({ articleId, user }: CommentsSectionProp
     const listRef = useRef<HTMLDivElement | null>(null);
     const { data: session } = useSession();
 
-
-    const fetchComments = async () => {
-        try {
-            setLoadingComments(true);
-            const res = await axiosClient.get(`/comments/article/${articleId}`);
-            setComments(res.data.data);
-        } catch (error) {
-            console.error(error);
-            toast.error("Failed to load comments");
-        } finally {
-            setLoadingComments(false);
-        }
-    };
-
     useEffect(() => {
+        const fetchComments = async () => {
+            try {
+                setLoadingComments(true);
+                const res = await axiosClient.get(`/comments/article/${articleId}`);
+                setComments(res.data.data);
+            } catch (error) {
+                console.error(error);
+                toast.error("Failed to load comments");
+            } finally {
+                setLoadingComments(false);
+            }
+        };
+
         fetchComments();
     }, [articleId]);
 
@@ -59,13 +64,14 @@ export default function CommentsSection({ articleId, user }: CommentsSectionProp
 
         try {
             setPosting(true);
-            let user: any = localStorage.getItem("user");
-            if (user) {
-                user = JSON.parse(user);
-            }
+            let user: UserType | null = null;
+            const storedUser = localStorage.getItem("user");
+            if (storedUser) user = JSON.parse(storedUser);
+
             const res = await axiosClient.post(`/comments/create/${articleId}/${user?._id}`, {
                 comment: trimmed,
             });
+
             setComments((prev) => [res.data.data, ...prev]);
             setNewComment("");
             listRef.current?.scrollTo({ top: 0, behavior: "smooth" });
@@ -128,26 +134,30 @@ export default function CommentsSection({ articleId, user }: CommentsSectionProp
                         No comments yet. Be the first to comment!
                     </div>
                 ) : (
-                    comments.map((comment) => <CommentItem key={comment._id} user={session?.user} comment={comment} />)
+                    comments.map((comment) => (
+                        <CommentItem key={comment._id} comment={comment} />
+                    ))
                 )}
             </div>
         </div>
     );
 }
 
-function CommentItem({ comment, user }: { comment: Comment; user?: any }) {
+function CommentItem({ comment, user }: { comment: Comment; user?: UserType }) {
     return (
         <div className="flex items-start gap-4 p-4 bg-bg border border-border rounded-lg shadow-sm">
             <Avatar className="w-10 h-10 shrink-0">
                 <AvatarImage src={''} alt={user?.name || comment?.author?.name} />
                 <AvatarFallback className="bg-pri text-white text-sm">
-                    {user?.name[0] || comment?.author?.name?.charAt(0) || 'M'}
+                    {user?.name?.charAt(0) || comment?.author?.name?.charAt(0) || 'M'}
                 </AvatarFallback>
             </Avatar>
 
             <div className="flex-1">
                 <div className="flex justify-between items-center mb-1">
-                    <span className="font-semibold text-txt">{user?.name || comment?.author?.name || 'Anonymous'}</span>
+                    <span className="font-semibold text-txt">
+                        {user?.name || comment?.author?.name || 'Anonymous'}
+                    </span>
                     <span className="text-xs text-sec">
                         {formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}
                     </span>

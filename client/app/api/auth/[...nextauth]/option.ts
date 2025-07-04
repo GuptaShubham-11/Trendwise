@@ -1,5 +1,5 @@
 import GoogleProvider from "next-auth/providers/google";
-import { NextAuthOptions, Session, User } from "next-auth";
+import { NextAuthOptions, Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
 
 if (
