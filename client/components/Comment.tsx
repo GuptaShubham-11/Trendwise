@@ -42,6 +42,7 @@ export default function CommentsSection({ articleId, user }: CommentsSectionProp
             const res = await axiosClient.get(`/comments/article/${articleId}`);
             setComments(res.data.data);
         } catch (error) {
+            console.error(error);
             toast.error("Failed to load comments");
         } finally {
             setLoadingComments(false);

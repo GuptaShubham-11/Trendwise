@@ -1,5 +1,6 @@
 import GoogleProvider from "next-auth/providers/google";
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, Session, User } from "next-auth";
+import { JWT } from "next-auth/jwt";
 
 if (
     !process.env.GOOGLE_CLIENT_ID ||
@@ -17,12 +18,13 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        async session({ session, token }: any) {
-            // Send custom fields to session
-            session.user.id = token.sub;
+        async session({ session, token }: { session: Session; token: JWT }) {
+            if (session.user) {
+                session.user.id = token.sub!;
+            }
             return session;
         },
-        async jwt({ token }) {
+        async jwt({ token }: { token: JWT }) {
             return token;
         },
     },
