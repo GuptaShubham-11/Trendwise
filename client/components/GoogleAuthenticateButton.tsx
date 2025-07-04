@@ -9,7 +9,6 @@ export default function GoogleAuthenticateButton() {
         await signIn("google", {
             callbackUrl: "/articles",
         });
-        toast.success("Signed in successfully");
     };
 
     return (
