@@ -6,9 +6,6 @@
 
 ## Screenshots
 
-### Home Page
-![TrendWise](./screenshots/Home.jpeg)
-
 ### Article Page
 ![Article Page](./screenshots/Article.png)
 
