@@ -28,7 +28,6 @@ export default function Header() {
     const [isLoading, setIsLoading] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isGetting, setIsGetting] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -54,14 +53,11 @@ export default function Header() {
 
     const handleGetArticles = async () => {
         try {
-            setIsGetting(true);
             await axiosClient.post("/articles/generate");
             toast.success("Trending Articles loaded.");
         } catch (error) {
-           console.error(error);
-            toast.error("Failed to get articles"); 
-        } finally {
-            setIsGetting(false);
+            console.error(error);
+            toast.error("Failed to get articles");
         }
     }
 

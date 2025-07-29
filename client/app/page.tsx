@@ -1,6 +1,5 @@
 'use client';
 
-import { useSession } from "next-auth/react";
 import GoogleAuthenticateButton from "@/components/GoogleAuthenticateButton";
 import { Sparkles, Rocket, ShieldCheck, Wand2, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
@@ -182,7 +181,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
-                <p className="text-mt/90 mb-4 italic">"{comment}"</p>
+                <p className="text-mt/90 mb-4 italic">{comment}</p>
                 <div className="flex items-center gap-3">
                   <div className="bg-pri/10 rounded-full w-10 h-10 flex items-center justify-center text-pri font-bold">
                     {name.charAt(0)}

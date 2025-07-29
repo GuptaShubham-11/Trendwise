@@ -281,7 +281,7 @@ export default function Page() {
                                 <Search className="h-12 w-12 text-pri mx-auto mb-4" />
                                 <h3 className="text-xl font-semibold text-txt mb-2">No articles found</h3>
                                 <p className="text-txt/70">
-                                    We couldn't find any articles matching "{query}"
+                                    We couldn&apos;t find any articles matching {query}
                                 </p>
                             </div>
                         </motion.div>
