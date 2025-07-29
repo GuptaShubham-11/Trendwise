@@ -2,12 +2,11 @@
 
 import { useSession } from "next-auth/react";
 import GoogleAuthenticateButton from "@/components/GoogleAuthenticateButton";
-import { Sparkles, Rocket,  ShieldCheck, Wand2, TrendingUp } from "lucide-react";
+import { Sparkles, Rocket, ShieldCheck, Wand2, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const { data: session } = useSession();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {

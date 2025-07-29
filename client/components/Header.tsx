@@ -9,7 +9,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, Sparkles, Settings, User, LayoutDashboard, HelpCircle, ArrowUpRightIcon } from "lucide-react";
+import { LogOut, Sparkles, ArrowUpRightIcon } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";

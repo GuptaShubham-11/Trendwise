@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "@/lib/axios";
 import { Input } from "@/components/ui/input";
-import { Flame, ArrowUpRight, Search, Sparkles, ArrowDown, Loader, ChevronRight } from "lucide-react";
+import { Flame, ArrowUpRight, Search,  ArrowDown,  ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Layout from "@/components/Layout";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -84,9 +84,6 @@ export default function Page() {
     }, [query, articles]);
 
     const displayedArticles = query ? filtered : articles;
-
-    // Get top 3 articles for featured section
-    const featuredArticles = articles.slice(0, 3);
 
     return (
         <Layout>

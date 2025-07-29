@@ -11,7 +11,7 @@ import Spinner from "./Spinner";
 import axiosClient from "@/lib/axios";
 import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, MessageCircle, User } from "lucide-react";
+import { Send, User } from "lucide-react";
 
 type Comment = {
     _id: string;
