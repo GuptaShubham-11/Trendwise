@@ -10,10 +10,10 @@
 ![TrendWise](./screenshots/Home.jpeg)
 
 ### Article Page
-![Article Page](./screenshots/ArticlePage.jpeg)
+![Article Page](./screenshots/Article.png)
 
 ### Articles
-![Articles](./screenshots/Articles.jpeg)
+![Articles](./screenshots/ArticlePage.png)
 
 ---
 

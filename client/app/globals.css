@@ -12,6 +12,7 @@
   --color-mt: #FFF;
 }
 
+
 body {
   background-color: var(--color-bg);
   color: var(--color-txt);
